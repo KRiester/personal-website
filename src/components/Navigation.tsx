@@ -3,11 +3,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { navItems } from "@/lib/data";
+import { useLanguage } from "@/lib/language-context";
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const { lang, setLang, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,9 +61,32 @@ export default function Navigation() {
                     : "text-[#888]"
                 }`}
               >
-                {item.label}
+                {t(item.label)}
               </a>
             ))}
+
+            <div className="flex items-center gap-0.5 rounded-full border border-[#222] bg-[#111] p-0.5">
+              <button
+                onClick={() => setLang("en")}
+                className={`rounded-full px-2.5 py-1 text-xs font-medium transition-colors ${
+                  lang === "en"
+                    ? "bg-[#3b82f6] text-white"
+                    : "text-[#888] hover:text-white"
+                }`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => setLang("de")}
+                className={`rounded-full px-2.5 py-1 text-xs font-medium transition-colors ${
+                  lang === "de"
+                    ? "bg-[#3b82f6] text-white"
+                    : "text-[#888] hover:text-white"
+                }`}
+              >
+                DE
+              </button>
+            </div>
           </div>
 
           <button
@@ -100,9 +125,32 @@ export default function Navigation() {
                 onClick={() => setMobileOpen(false)}
                 className="text-2xl font-light text-white transition-colors hover:text-[#3b82f6]"
               >
-                {item.label}
+                {t(item.label)}
               </a>
             ))}
+
+            <div className="mt-4 flex items-center gap-1 rounded-full border border-[#222] bg-[#111] p-1">
+              <button
+                onClick={() => setLang("en")}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  lang === "en"
+                    ? "bg-[#3b82f6] text-white"
+                    : "text-[#888]"
+                }`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => setLang("de")}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  lang === "de"
+                    ? "bg-[#3b82f6] text-white"
+                    : "text-[#888]"
+                }`}
+              >
+                DE
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

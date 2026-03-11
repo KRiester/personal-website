@@ -1,9 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { siteConfig } from "@/lib/data";
+import { siteConfig, contactData } from "@/lib/data";
+import { useLanguage } from "@/lib/language-context";
 
 export default function Contact() {
+  const { t } = useLanguage();
+
   return (
     <section id="contact" className="relative px-6 py-32">
       <div className="mx-auto max-w-4xl text-center">
@@ -14,13 +17,13 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
         >
           <p className="mb-4 text-sm font-medium tracking-[0.3em] text-[#3b82f6] uppercase">
-            Contact
+            {t(contactData.label)}
           </p>
           <h2 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Let&apos;s connect
+            {t(contactData.heading)}
           </h2>
           <p className="mb-12 text-lg text-[#888]">
-            Open for conversations about strategy, data, and new opportunities.
+            {t(contactData.subheading)}
           </p>
         </motion.div>
 

@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
-import Projects from "@/components/Projects";
+import Focus from "@/components/Projects";
 import Contact from "@/components/Contact";
 
 function Divider() {
@@ -24,7 +24,7 @@ export default function Home() {
         <Divider />
         <Experience />
         <Divider />
-        <Projects />
+        <Focus />
         <Divider />
         <Contact />
       </main>

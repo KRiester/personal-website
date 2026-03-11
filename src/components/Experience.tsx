@@ -3,11 +3,15 @@
 import { motion } from "framer-motion";
 import {
   experienceData,
+  experienceLabels,
   educationData,
   certificationsData,
 } from "@/lib/data";
+import { useLanguage } from "@/lib/language-context";
 
 export default function Experience() {
+  const { t } = useLanguage();
+
   return (
     <section id="experience" className="relative px-6 py-32">
       <div className="mx-auto max-w-4xl">
@@ -18,10 +22,10 @@ export default function Experience() {
           transition={{ duration: 0.8 }}
         >
           <p className="mb-4 text-sm font-medium tracking-[0.3em] text-[#3b82f6] uppercase">
-            Experience
+            {t(experienceLabels.label)}
           </p>
           <h2 className="mb-16 text-3xl font-bold tracking-tight sm:text-4xl">
-            Where I&apos;ve worked
+            {t(experienceLabels.heading)}
           </h2>
         </motion.div>
 
@@ -41,15 +45,15 @@ export default function Experience() {
               <div className="absolute left-[-4px] top-2 h-2 w-2 rounded-full bg-[#3b82f6] md:left-[28px]" />
 
               <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4">
-                <h3 className="text-lg font-semibold">{item.role}</h3>
-                <span className="text-sm text-[#888]">{item.period}</span>
+                <h3 className="text-lg font-semibold">{t(item.role)}</h3>
+                <span className="text-sm text-[#888]">{t(item.period)}</span>
               </div>
               <p className="mt-1 text-sm font-medium text-[#3b82f6]">
                 {item.company}{" "}
-                <span className="text-[#666]">/ {item.location}</span>
+                <span className="text-[#666]">/ {t(item.location)}</span>
               </p>
               <p className="mt-3 text-sm leading-relaxed text-[#888]">
-                {item.description}
+                {t(item.description)}
               </p>
             </motion.div>
           ))}
@@ -63,22 +67,26 @@ export default function Experience() {
           transition={{ duration: 0.6 }}
           className="mt-20"
         >
-          <h3 className="mb-8 text-xl font-semibold">Education</h3>
-          {educationData.map((item, i) => (
-            <div
-              key={i}
-              className="rounded-lg border border-[#222] bg-[#111] p-6"
-            >
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                <h4 className="font-semibold">{item.institution}</h4>
-                <span className="text-sm text-[#888]">{item.period}</span>
+          <h3 className="mb-8 text-xl font-semibold">
+            {t(experienceLabels.educationHeading)}
+          </h3>
+          <div className="space-y-4">
+            {educationData.map((item, i) => (
+              <div
+                key={i}
+                className="rounded-lg border border-[#222] bg-[#111] p-6"
+              >
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                  <h4 className="font-semibold">{t(item.institution)}</h4>
+                  <span className="text-sm text-[#888]">{t(item.period)}</span>
+                </div>
+                <p className="mt-1 text-sm text-[#888]">{t(item.degree)}</p>
+                <p className="mt-2 text-sm font-medium text-[#3b82f6]">
+                  {t(item.note)}
+                </p>
               </div>
-              <p className="mt-1 text-sm text-[#888]">{item.degree}</p>
-              <p className="mt-2 text-sm font-medium text-[#3b82f6]">
-                {item.note}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </motion.div>
 
         {/* Certifications */}
@@ -89,7 +97,9 @@ export default function Experience() {
           transition={{ duration: 0.6 }}
           className="mt-12"
         >
-          <h3 className="mb-6 text-xl font-semibold">Certifications</h3>
+          <h3 className="mb-6 text-xl font-semibold">
+            {t(experienceLabels.certificationsHeading)}
+          </h3>
           <div className="flex flex-wrap gap-3">
             {certificationsData.map((cert) => (
               <span

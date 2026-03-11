@@ -1,9 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { siteConfig } from "@/lib/data";
+import { siteConfig, heroData } from "@/lib/data";
+import { useLanguage } from "@/lib/language-context";
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       {/* Animated gradient background */}
@@ -29,7 +32,7 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="mb-4 text-sm font-medium tracking-[0.3em] text-[#888] uppercase"
         >
-          {siteConfig.title}
+          {t(siteConfig.title)}
         </motion.p>
 
         <motion.h1
@@ -51,7 +54,7 @@ export default function Hero() {
             href="#about"
             className="group flex items-center gap-2 text-sm text-[#888] transition-colors hover:text-white"
           >
-            Explore
+            {t(heroData.explore)}
             <span className="inline-block transition-transform group-hover:translate-y-0.5">
               &darr;
             </span>
